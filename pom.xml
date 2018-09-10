@@ -4,8 +4,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>io.annot8</groupId>
+        <artifactId>annot8-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
     <groupId>io.annot8</groupId>
     <artifactId>annot8-integration-tests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
+    <name>Annot8 Integration Tests</name>
+    <description>Integration tests for the Annot8 default implementation</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.annot8</groupId>
+            <artifactId>annot8-default-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.annot8</groupId>
+            <artifactId>annot8-components-files</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.annot8</groupId>
+            <artifactId>annot8-components-cyber</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>io.annot8</groupId>
+        	<artifactId>annot8-components-mongo</artifactId>
+        	<version>${annot8-components.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>1.8.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
