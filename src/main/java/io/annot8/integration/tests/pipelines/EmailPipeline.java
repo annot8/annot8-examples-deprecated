@@ -10,14 +10,16 @@ import io.annot8.components.files.sources.FileSystemSourceSettings;
 public class EmailPipeline extends AbstractResourceDataPipeline {
 
   protected void configurePipeline(PipelineBuilder builder) {
-    builder.addDataSource(new FileSystemSource(), new FileSystemSourceSettings(getResourceUri()));
+    FileSystemSourceSettings fileSystemSourceSettings = new FileSystemSourceSettings(
+        getResourceUri());
+    fileSystemSourceSettings.setWatching(false);
+    builder.addDataSource(new FileSystemSource(), fileSystemSourceSettings);
     builder.addProcessor(new TxtFileExtractor());
     builder.addProcessor(new Email());
   }
 
   @Override
   protected void configureContentBuilders(ContentBuilderFactoryRegistry registry) {
-
   }
 
 }
