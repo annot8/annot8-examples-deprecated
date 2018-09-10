@@ -43,8 +43,7 @@ public class MongoPipelineTest {
         Consumer<CreateContainerCmd> cmd = e -> e.withPortBindings(new PortBinding(Ports.Binding.bindPort(27017), new ExposedPort(27017)));
         MONGO = new GenericContainer("mongo:3.6.7");
         MONGO.withExposedPorts(27017).withCreateContainerCmdModifier(cmd).start();
-
-        MongoClient client = MongoClients.create("mongodb://localhost:27017");
+        MongoClient client = MongoClients.create("mongodb://" + MONGO.getContainerIpAddress() + ":27017");
         MongoDatabase db = client.getDatabase("annot8");
         MongoCollection<Document> test = db.getCollection("test");
 
