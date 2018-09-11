@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import org.bson.Document;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 
@@ -30,10 +30,10 @@ public class MongoPipelineTest {
     private static final String DOCUMENT = "document";
     private static final String TEXT = "text";
     private static final String EXPECTED_EMAIL = "test@testing.com";
-    private static GenericContainer MONGO;
+    private GenericContainer MONGO;
 
-    @BeforeAll
-    public static void beforeEach(){
+    @BeforeEach
+    public void beforeEach(){
         Consumer<CreateContainerCmd> cmd = e -> e.withPortBindings(new PortBinding(Ports.Binding.bindPort(27017), new ExposedPort(27017)));
         MONGO = new GenericContainer("mongo:latest");
         MONGO.withExposedPorts(27017).withCreateContainerCmdModifier(cmd).start();
@@ -45,8 +45,8 @@ public class MongoPipelineTest {
         test.insertOne(parse);
     }
 
-    @AfterAll
-    public static void afterEach(){
+    @AfterEach
+    public void afterEach(){
         MONGO.stop();
     }
 
