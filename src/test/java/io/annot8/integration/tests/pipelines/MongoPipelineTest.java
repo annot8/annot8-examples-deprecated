@@ -52,7 +52,7 @@ public class MongoPipelineTest {
 
     @Test
     public void testMongoPipeline(){
-        MongoPipeline pipeline = new MongoPipeline();
+        MongoPipeline pipeline = new MongoPipeline(MONGO.getContainerIpAddress());
         List<Item> items = pipeline.run();
 
         assertEquals(1, items.size());

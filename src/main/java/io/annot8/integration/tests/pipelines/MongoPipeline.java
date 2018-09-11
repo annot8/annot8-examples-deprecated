@@ -17,9 +17,16 @@ import org.bson.Document;
 
 public class MongoPipeline extends AbstractResourceDataPipeline {
 
+  private String host;
+
+  public MongoPipeline(String host){
+    this.host = host;
+  }
+
   @Override
   protected void configurePipeline(PipelineBuilder builder) throws BadConfigurationException {
     MongoConnectionSettings settings = new MongoConnectionSettings();
+    settings.setConnection("mongodb://" + host);
     settings.setDatabase("testing");
     settings.setCollection("test");
     MongoFactory factory = new MongoFactory();
