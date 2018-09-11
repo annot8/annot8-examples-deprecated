@@ -16,20 +16,14 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import org.bson.BsonDocument;
 import org.bson.Document;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.shaded.io.netty.util.internal.shaded.org.jctools.queues.MessagePassingQueue.WaitStrategy;
 
 public class MongoPipelineTest {
 
@@ -41,7 +35,7 @@ public class MongoPipelineTest {
     @BeforeAll
     public static void beforeEach(){
         Consumer<CreateContainerCmd> cmd = e -> e.withPortBindings(new PortBinding(Ports.Binding.bindPort(27017), new ExposedPort(27017)));
-        MONGO = new GenericContainer("mongo:3.6.7");
+        MONGO = new GenericContainer("mongo:latest");
         MONGO.withExposedPorts(27017).withCreateContainerCmdModifier(cmd).start();
         MongoClient client = MongoClients.create("mongodb://" + MONGO.getContainerIpAddress() + ":27017");
         MongoDatabase db = client.getDatabase("annot8");
