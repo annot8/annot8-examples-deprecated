@@ -13,7 +13,7 @@ public class EmailPipeline extends AbstractResourceDataPipeline {
     FileSystemSourceSettings fileSystemSourceSettings = new FileSystemSourceSettings(
         getResourceUri());
     fileSystemSourceSettings.setWatching(false);
-    builder.addDataSource(new FileSystemSource(), fileSystemSourceSettings);
+    builder.addSource(new FileSystemSource(), fileSystemSourceSettings);
     builder.addProcessor(new TxtFileExtractor());
     builder.addProcessor(new Email());
   }

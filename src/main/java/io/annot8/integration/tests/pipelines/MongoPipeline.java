@@ -25,7 +25,7 @@ public class MongoPipeline extends AbstractResourceDataPipeline {
     MongoFactory factory = new MongoFactory();
 
     builder.addResource("mongo", factory, settings);
-    builder.addDataSource(new MongoSource());
+    builder.addSource(new MongoSource());
     builder.addProcessor(new CreateContentFromMongoDocument());
     builder.addProcessor(new Email());
   }
